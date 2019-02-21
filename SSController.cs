@@ -19,13 +19,21 @@ namespace Klyte.SuburbStyler
     {
 
         private UIButton m_openSSPanelButton;
-        private UIPanel m_ssPanelContainer;
 
         private void Start()
         {
             CreateSsPanel();
         }
 
+
+        /// <summary>
+        /// This method will be hooked at Klyte Commons to point to the whole Klyte Mods Panel
+        /// </summary>
+        /// 
+        public UIComponent GetMainReference()
+        {
+            return SSPanel.Instance.MainPanel;
+        }
 
         /// <summary>
         /// This method will be hooked at Klyte Commons to create a new tab at the 45's button instead of new button at the game toolbar
@@ -37,7 +45,7 @@ namespace Klyte.SuburbStyler
             KlyteUtils.createUIElement(out m_openSSPanelButton, null);
             m_openSSPanelButton.size = new Vector2(43f, 49f);
             m_openSSPanelButton.tooltip = "Suburb Styler (v" + SuburbStyler.version + ")";
-            m_openSSPanelButton.atlas = SSCommonTextureAtlas.instance.atlas;
+            m_openSSPanelButton.atlas = SSToolbarTextureAtlas.instance.atlas;
             m_openSSPanelButton.focusedColor = new Color32(128, 183, 240, 255);
             m_openSSPanelButton.hoveredColor = new Color32(128, 240, 183, 255);
             m_openSSPanelButton.disabledColor = new Color32(0, 0, 0, 255);
@@ -54,12 +62,17 @@ namespace Klyte.SuburbStyler
             m_openSSPanelButton.playAudioEvents = true;
             m_openSSPanelButton.tabStrip = true;
 
-            KlyteUtils.createUIElement(out m_ssPanelContainer, null);
+            KlyteUtils.createUIElement(out UIPanel ssPanelContainerRoot, null);
 
-            toolStrip.AddTab("SuburbStyler", m_openSSPanelButton.gameObject, m_ssPanelContainer.gameObject);
+            toolStrip.AddTab("SuburbStyler", m_openSSPanelButton.gameObject, ssPanelContainerRoot.gameObject);
+            KlyteUtils.createUIElement(out UIPanel ssPanelContainer, ssPanelContainerRoot.transform);
 
-            m_ssPanelContainer.absolutePosition = new Vector3();
-            m_ssPanelContainer.clipChildren = false;
+            ssPanelContainer.absolutePosition = new Vector4(0, 0, 0, 0);
+            ssPanelContainer.clipChildren = false;
+
+            KlyteUtils.createUIElement(out UIPanel ssInternalPanel, ssPanelContainer.transform);
+            ssInternalPanel.area = new Vector4(400, 200, 875, 550);
+            ssInternalPanel.gameObject.AddComponent<SSPanel>();
         }
         /// <summary>
         /// This method will be hooked at Klyte Commons to close the whole KC button instead of the SS window

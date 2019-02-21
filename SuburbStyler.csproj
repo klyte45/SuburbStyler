@@ -49,9 +49,11 @@
     <Compile Include="SuburbStyler.cs" />
     <Compile Include="SSController.cs" />
     <Compile Include="TextureAtlas\SSCommonTextureAtlas.cs" />
+    <Compile Include="TextureAtlas\SSToolbarTextureAtlas.cs" />
     <Compile Include="UI\AVOPreviewRenderer.cs" />
     <Compile Include="UI\i18n\KlyteLocaleUtils.cs" />
     <Compile Include="UI\i18n\SSLocaleUtils.cs" />
+    <Compile Include="UI\SSPanel.cs" />
     <Compile Include="Utils\KlyteUtils.cs" />
     <Compile Include="Utils\ResourceLoader.cs" />
   </ItemGroup>
@@ -107,13 +109,13 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UI\Images\sprites.png" />
+    <EmbeddedResource Include="UI\Images\toolbar.png" />
     <EmbeddedResource Include="UI\i18n\en.properties" />
     <EmbeddedResource Include="UI\i18n\pt.properties" />
     <EmbeddedResource Include="UI\i18n\ru.properties" />
     <EmbeddedResource Include="UI\i18n\fr.properties" />
     <None Include="packages.config" />
-    <None Include="UI\Images\sprites.psd" />
+    <None Include="UI\Images\toolbar.psd" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="0Harmony, Version=1.2.0.1, Culture=neutral, processorArchitecture=MSIL">
@@ -151,6 +153,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="UI\VersionNotes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="UI\Images\sprites.png" />
+    <None Include="UI\Images\sprites.psd" />
   </ItemGroup>
   <PropertyGroup>
   </PropertyGroup>

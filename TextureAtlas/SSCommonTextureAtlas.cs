@@ -15,12 +15,10 @@ namespace Klyte.SuburbStyler.TextureAtlas
 {
     public class SSCommonTextureAtlas : TextureAtlasDescriptor<SSCommonTextureAtlas, SSResourceLoader>
     {
-        protected override int Height => 49;
-        protected override int Width => 43;
         protected override string ResourceName => "UI.Images.sprites.png";
         protected override string CommonName => "SuburbStylerSprites";
         public override string[] SpriteNames => new string[] {
-                    "ToolbarIconGroup6Hovered",    "ToolbarIconGroup6Focused",   "ToolbarIconGroup6Pressed",    "SuburbStylerIcon"
+                  "SSIcon","AutoNameIcon","AutoColorIcon","RemoveUnwantedIcon","ConfigIcon","24hLineIcon", "PerHourIcon","AbsoluteMode","RelativeMode"
                 };
     }
 }
