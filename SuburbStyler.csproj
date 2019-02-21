@@ -47,7 +47,8 @@
     <Compile Include="Interfaces\TextureAtlasDescriptor.cs" />
     <Compile Include="Interfaces\BasicIUserMod.cs" />
     <Compile Include="SuburbStyler.cs" />
-    <Compile Include="TextureAtlas\KCCommonTextureAtlas.cs" />
+    <Compile Include="SSController.cs" />
+    <Compile Include="TextureAtlas\SSCommonTextureAtlas.cs" />
     <Compile Include="UI\AVOPreviewRenderer.cs" />
     <Compile Include="UI\i18n\KlyteLocaleUtils.cs" />
     <Compile Include="UI\i18n\SSLocaleUtils.cs" />
