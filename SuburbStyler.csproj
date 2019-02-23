@@ -168,7 +168,8 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>xcopy /Y "$(TargetPath)" "$(ProjectDir)\_requiredDLLs\"
-xcopy /Y "$(TargetPath)" "%25APPDATA%25\..\Local\Colossal Order\Cities_Skylines\Addons\Mods\SS\"
+xcopy /Y "$(TargetDir)0Harmony.dll" "$(ProjectDir)\_requiredDLLs\"
+xcopy /Y "$(ProjectDir)\_requiredDLLs\*" "%25APPDATA%25\..\Local\Colossal Order\Cities_Skylines\Addons\Mods\SS\"
 </PostBuildEvent>
   </PropertyGroup>
 </Project>

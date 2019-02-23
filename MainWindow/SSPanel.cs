@@ -89,12 +89,12 @@ namespace Klyte.SuburbStyler.MainWindow
             titlebar.autoSize = false;
             titlebar.text = $"{SuburbStyler.instance.SimpleName} v{SuburbStyler.version}";
             titlebar.textAlignment = UIHorizontalAlignment.Center;
-            KlyteUtils.createDragHandle(titlebar, SuburbStyler.instance.controller.GetMainReference());
+            KlyteUtils.createDragHandle(titlebar, SSController.GetMainReference());
 
             KlyteUtils.createUIElement(out UISprite logo, MainPanel.transform, "SSLogo", new Vector4(22, 5f, 32, 32));
             logo.atlas = SSCommonTextureAtlas.instance.atlas;
             logo.spriteName = "SSIcon";
-            KlyteUtils.createDragHandle(logo, SuburbStyler.instance.controller.GetMainReference());
+            KlyteUtils.createDragHandle(logo, SSController.GetMainReference());
         }
         #endregion
 

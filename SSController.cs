@@ -23,29 +23,38 @@ namespace Klyte.SuburbStyler
 
         private void Start()
         {
-            CreateSsPanel();
+            CreateMainPanel();
         }
 
 
         /// <summary>
-        /// This method will be hooked at Klyte Commons to point to the whole Klyte Mods Panel
+        /// This method will be changed at Klyte Commons to point to the whole Klyte Mods Panel
         /// </summary>
         /// 
-        public UIComponent GetMainReference()
+        public static Func<UIComponent> GetMainReference = () =>
         {
             return SSPanel.Instance.MainPanel;
-        }
+        };
+
+        private static Type GetDefaultClassForMainPanel() => typeof(SSPanel);
+        private static UITextureAtlas GetTextureAtlasForIcon() => SSCommonTextureAtlas.instance.atlas;
+        private static String GetIconName() => SSCommonTextureAtlas.instance.SpriteNames[0];
+        private static int GetTabWidth() => 875;
+        private static void ShowVersionInfoPopup() => SuburbStyler.instance.showVersionInfoPopup();
+        private static string GetTooltipText() => "Suburb Styler (v" + SuburbStyler.version + ")";
+        private static string GetEnumName() => "SuburbStyler";
+
 
         /// <summary>
         /// This method will be hooked at Klyte Commons to create a new tab at the 45's button instead of new button at the game toolbar
         /// </summary>
 
-        private void CreateSsPanel()
+        private void CreateMainPanel()
         {
             UITabstrip toolStrip = ToolsModifierControl.mainToolbar.GetComponentInChildren<UITabstrip>();
             KlyteUtils.createUIElement(out m_openSSPanelButton, null);
             m_openSSPanelButton.size = new Vector2(43f, 49f);
-            m_openSSPanelButton.tooltip = "Suburb Styler (v" + SuburbStyler.version + ")";
+            m_openSSPanelButton.tooltip = GetTooltipText();
             m_openSSPanelButton.atlas = SSToolbarTextureAtlas.instance.atlas;
             m_openSSPanelButton.focusedColor = new Color32(128, 183, 240, 255);
             m_openSSPanelButton.hoveredColor = new Color32(128, 240, 183, 255);
@@ -72,28 +81,31 @@ namespace Klyte.SuburbStyler
             ssPanelContainer.clipChildren = false;
 
             KlyteUtils.createUIElement(out UIPanel ssInternalPanel, ssPanelContainer.transform);
-            ssInternalPanel.area = new Vector4(400, 200, 875, 550);
-            ssInternalPanel.gameObject.AddComponent<SSPanel>();
+            ssInternalPanel.area = new Vector4(400, 200, GetTabWidth(), 550);
+            ssInternalPanel.gameObject.AddComponent(GetDefaultClassForMainPanel());
         }
+
+
+
         /// <summary>
         /// This method will be hooked at Klyte Commons to close the whole KC button instead of the SS window
         /// </summary>
-        public static void OpenSsPanel()
+        public static OnButtonClicked OpenPanel = () =>
         {
-            if (SuburbStyler.instance.controller.m_openSSPanelButton.state != UIButton.ButtonState.Focused)
+            if (SuburbStyler.instance.controller.m_openSSPanelButton != null && SuburbStyler.instance.controller.m_openSSPanelButton.state != UIButton.ButtonState.Focused)
             {
                 SuburbStyler.instance.controller.m_openSSPanelButton.SimulateClick();
             }
-        }
+        };
         /// <summary>
         /// This method will be hooked at Klyte Commons to open the SS tab at the 45's button instead of local button
         /// </summary>
-        public static void CloseSsPanel()
+        public static OnButtonClicked ClosePanel = () =>
         {
-            if (SuburbStyler.instance.controller.m_openSSPanelButton.state == UIButton.ButtonState.Focused)
+            if (SuburbStyler.instance.controller.m_openSSPanelButton != null && SuburbStyler.instance.controller.m_openSSPanelButton.state == UIButton.ButtonState.Focused)
             {
                 SuburbStyler.instance.controller.m_openSSPanelButton.SimulateClick();
             }
-        }
+        };
     }
 }

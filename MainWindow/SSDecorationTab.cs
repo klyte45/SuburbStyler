@@ -137,7 +137,7 @@ namespace Klyte.SuburbStyler.Interfaces
         {
             Color32 backgroundColor = m_backgroundColor;
             backgroundColor.a = (byte)((base.component.zOrder % 2 != 0) ? 127 : 255);
-            if (m_mainPanel)
+            if (m_mouseIsOver)
             {
                 backgroundColor.r = (byte)Mathf.Min(255, backgroundColor.r * 3 >> 1);
                 backgroundColor.g = (byte)Mathf.Min(255, backgroundColor.g * 3 >> 1);
