@@ -5,6 +5,7 @@ using ICities;
 using Klyte.SuburbStyler.Extensors;
 using Klyte.SuburbStyler.i18n;
 using Klyte.SuburbStyler.Interfaces;
+using Klyte.SuburbStyler.MainWindow;
 using Klyte.SuburbStyler.TextureAtlas;
 using Klyte.SuburbStyler.UI;
 using Klyte.SuburbStyler.Utils;

@@ -1,5 +1,6 @@
 ﻿using ColossalFramework.Globalization;
 using ColossalFramework.UI;
+using Klyte.SuburbStyler.MainWindow.Tabs;
 using Klyte.SuburbStyler.TextureAtlas;
 using Klyte.SuburbStyler.UI;
 using Klyte.SuburbStyler.Utils;
@@ -7,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Klyte.SuburbStyler.UI
+namespace Klyte.SuburbStyler.MainWindow
 {
 
     public class SSPanel : UICustomControl
@@ -17,6 +18,8 @@ namespace Klyte.SuburbStyler.UI
 
         public static SSPanel Instance => m_instance;
         public UIPanel MainPanel { get; private set; }
+        private UIScrollablePanel m_profileList;
+        private UITabstrip m_tabstripCategories;
 
 
 
@@ -24,9 +27,11 @@ namespace Klyte.SuburbStyler.UI
         private void Awake()
         {
             m_instance = this;
-            m_controlContainer = GetComponent<UIComponent>();            
+            m_controlContainer = GetComponent<UIComponent>();
             m_controlContainer.name = "SSPanel";
             m_controlContainer.isInteractive = false;
+
+            var lateralListWidth = 180;
 
 
             KlyteUtils.createUIElement(out UIPanel _mainPanel, GetComponent<UIPanel>().transform, "SSListPanel", new Vector4(0, 0, m_controlContainer.width, m_controlContainer.height));
@@ -36,8 +41,25 @@ namespace Klyte.SuburbStyler.UI
 
 
             CreateTitleBar();
-            //KlyteUtils.CreateScrollPanel(_mainPanel, out UIScrollablePanel scrollablePanel, out UIScrollbar scrollbar, 450, m_controlContainer.height - 120, new Vector3(10, 110));
+            KlyteUtils.CreateScrollPanel(_mainPanel, out m_profileList, out UIScrollbar scrollbar, lateralListWidth, m_controlContainer.height - 110, new Vector3(10, 100));
 
+            KlyteUtils.createUIElement(out m_tabstripCategories, MainPanel.transform, "SSTabstrip", new Vector4(lateralListWidth + 30, 50, MainPanel.width - 340, 40));
+
+            KlyteUtils.createUIElement(out UITabContainer tabContainer, MainPanel.transform, "SSTabContainer", new Vector4(lateralListWidth + 30, 90, MainPanel.width - 350, MainPanel.height - 90));
+            m_tabstripCategories.tabPages = tabContainer;
+
+            UIButton tabTrees = CreateTabTemplate();
+            KlyteUtils.createUIElement(out UIPanel containerTrees, null);
+            containerTrees.area = new Vector4(0, 0, tabContainer.width, tabContainer.height);
+            containerTrees.backgroundSprite = "MainPanelInfo";
+            containerTrees.color = Color.gray;
+            m_tabstripCategories.AddTab(typeof(SSDecorationTabTrees).Name, tabTrees.gameObject, containerTrees.gameObject);
+            var tabController = containerTrees.gameObject.AddComponent<SSDecorationTabTrees>();
+            tabTrees.normalFgSprite = tabController.TabIcon;
+            tabTrees.tooltipLocaleID = tabController.TabDescriptionLocale;
+            tabTrees.isTooltipLocalized = true;
+
+            m_tabstripCategories.selectedIndex = -1;
             //_mainPanel.gameObject.AddComponent<SSVehicleList>();
             //CreateTitleRow(out UIPanel title, _mainPanel);
 
@@ -54,6 +76,10 @@ namespace Klyte.SuburbStyler.UI
             if (value)
             {
                 SuburbStyler.instance.showVersionInfoPopup();
+            }
+            if (m_tabstripCategories.selectedIndex < 0)
+            {
+                m_tabstripCategories.selectedIndex = 0;
             }
         }
 
@@ -130,6 +156,17 @@ namespace Klyte.SuburbStyler.UI
             }
             m_previewPanel.isVisible = true;
             m_previewRenderer.RenderVehicle(m_lastInfo, Color.HSVToRGB(Math.Abs(m_previewRenderer.cameraRotation) / 360f, .5f, .5f), true);
+        }
+
+        private static UIButton CreateTabTemplate()
+        {
+            KlyteUtils.createUIElement(out UIButton tabTemplate, null, "SSTabTemplate");
+            KlyteUtils.initButton(tabTemplate, false, "GenericTab");
+            tabTemplate.autoSize = false;
+            tabTemplate.width = 40;
+            tabTemplate.height = 40;
+            tabTemplate.foregroundSpriteMode = UIForegroundSpriteMode.Scale;
+            return tabTemplate;
         }
     }
 }
