@@ -14,12 +14,15 @@ using UnityEngine;
 
 namespace Klyte.SuburbStyler.Interfaces
 {
-    internal abstract class SSDecorationTab<D, I> : UICustomControl
-        where D : DecorationDescriptorManager<D, I>
-        where I : PrefabInfo
+    internal abstract class SSDecorationTab : UICustomControl
     {
         public abstract string TabIcon { get; }
         public abstract string TabDescriptionLocale { get; }
+    }
+    internal abstract class SSDecorationTab<D, I> : SSDecorationTab
+        where D : DecorationDescriptorManager<D, I>
+        where I : PrefabInfo
+    {
         private UIPanel m_mainPanel;
         private UIScrollablePanel m_scrollPanel;
 

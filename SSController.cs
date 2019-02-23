@@ -28,13 +28,11 @@ namespace Klyte.SuburbStyler
 
 
         /// <summary>
-        /// This method will be changed at Klyte Commons to point to the whole Klyte Mods Panel
+        /// This func will be replaced at Klyte Commons to point to the whole Klyte Mods Panel
         /// </summary>
         /// 
-        public static Func<UIComponent> GetMainReference = () =>
-        {
-            return SSPanel.Instance.MainPanel;
-        };
+        public static Func<UIComponent> GetMainReference = () => SSPanel.Instance.MainPanel;
+    
 
         private static Type GetDefaultClassForMainPanel() => typeof(SSPanel);
         private static UITextureAtlas GetTextureAtlasForIcon() => SSCommonTextureAtlas.instance.atlas;
@@ -88,7 +86,7 @@ namespace Klyte.SuburbStyler
 
 
         /// <summary>
-        /// This method will be hooked at Klyte Commons to close the whole KC button instead of the SS window
+        /// This delegate will be replaced at Klyte Commons to close the whole KC button instead of the SS window
         /// </summary>
         public static OnButtonClicked OpenPanel = () =>
         {
@@ -98,7 +96,7 @@ namespace Klyte.SuburbStyler
             }
         };
         /// <summary>
-        /// This method will be hooked at Klyte Commons to open the SS tab at the 45's button instead of local button
+        /// This delegate will be replaced at Klyte Commons to open the SS tab at the 45's button instead of local button
         /// </summary>
         public static OnButtonClicked ClosePanel = () =>
         {

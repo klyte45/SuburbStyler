@@ -1,5 +1,6 @@
 ﻿using ColossalFramework.Globalization;
 using ColossalFramework.UI;
+using Klyte.SuburbStyler.Interfaces;
 using Klyte.SuburbStyler.MainWindow.Tabs;
 using Klyte.SuburbStyler.TextureAtlas;
 using Klyte.SuburbStyler.UI;
@@ -53,21 +54,18 @@ namespace Klyte.SuburbStyler.MainWindow
             containerTrees.area = new Vector4(0, 0, tabContainer.width, tabContainer.height);
             containerTrees.backgroundSprite = "MainPanelInfo";
             containerTrees.color = Color.gray;
-            m_tabstripCategories.AddTab(typeof(SSDecorationTabTrees).Name, tabTrees.gameObject, containerTrees.gameObject);
-            var tabController = containerTrees.gameObject.AddComponent<SSDecorationTabTrees>();
-            tabTrees.normalFgSprite = tabController.TabIcon;
-            tabTrees.tooltipLocaleID = tabController.TabDescriptionLocale;
-            tabTrees.isTooltipLocalized = true;
 
+            List<Type> tabs = KlyteUtils.GetSubtypesRecursive(typeof(SSDecorationTab<,>), GetType());
+
+            foreach (var tab in tabs)
+            {
+                m_tabstripCategories.AddTab(tab.Name, tabTrees.gameObject, containerTrees.gameObject);
+                var tabController = (SSDecorationTab)containerTrees.gameObject.AddComponent(tab);
+                tabTrees.normalFgSprite = tabController.TabIcon;
+                tabTrees.tooltipLocaleID = tabController.TabDescriptionLocale;
+                tabTrees.isTooltipLocalized = true;
+            }
             m_tabstripCategories.selectedIndex = -1;
-            //_mainPanel.gameObject.AddComponent<SSVehicleList>();
-            //CreateTitleRow(out UIPanel title, _mainPanel);
-
-            //SetPreviewWindow();
-            //CreateRemoveUnwantedButton();
-
-            //KlyteUtils.createUIElement(out UIPanel exportPanel, MainPanel.transform, "ImportExportPanel", new Vector4(480, 275, 380, 275));
-            //exportPanel.gameObject.AddComponent<SSConfigFilesPanel>();
 
         }
 
