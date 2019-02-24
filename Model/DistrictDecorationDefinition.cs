@@ -2,7 +2,7 @@
 
 namespace Klyte.SuburbStyler.Model
 {
-    public class DistrictDecoration
+    public class DistrictDecorationDefinition
     {
         public string Name { get; set; }
 
