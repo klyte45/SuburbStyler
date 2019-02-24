@@ -1,6 +1,4 @@
-﻿using ColossalFramework.Globalization;
-using Klyte.SuburbStyler.Utils;
-using System;
+﻿using Klyte.SuburbStyler.Utils;
 
 namespace Klyte.SuburbStyler.i18n
 {

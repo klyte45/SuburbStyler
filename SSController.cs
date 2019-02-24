@@ -1,17 +1,9 @@
-﻿using ColossalFramework;
-using ColossalFramework.Globalization;
-using ColossalFramework.UI;
+﻿using ColossalFramework.UI;
 using ICities;
-using Klyte.SuburbStyler.Extensors;
-using Klyte.SuburbStyler.i18n;
-using Klyte.SuburbStyler.Interfaces;
 using Klyte.SuburbStyler.MainWindow;
 using Klyte.SuburbStyler.TextureAtlas;
-using Klyte.SuburbStyler.UI;
 using Klyte.SuburbStyler.Utils;
 using System;
-using System.Linq;
-using System.Reflection;
 using UnityEngine;
 
 namespace Klyte.SuburbStyler

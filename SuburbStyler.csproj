@@ -118,6 +118,7 @@
     <EmbeddedResource Include="UI\i18n\pt.properties" />
     <EmbeddedResource Include="UI\i18n\ru.properties" />
     <EmbeddedResource Include="UI\i18n\fr.properties" />
+    <None Include=".gitignore" />
     <None Include="packages.config" />
     <None Include="UI\Images\toolbar.psd" />
   </ItemGroup>
@@ -128,18 +129,11 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>cslib\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>cslib\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
     <Reference Include="ColossalManaged">
       <HintPath>cslib\ColossalManaged.dll</HintPath>
     </Reference>
     <Reference Include="ICities">
       <HintPath>cslib\ICities.dll</HintPath>
-    </Reference>
-    <Reference Include="Mono.Posix, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>cslib\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -147,12 +141,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>cslib\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>cslib\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>cslib\UnityEngine.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

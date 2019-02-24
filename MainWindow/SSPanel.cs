@@ -1,7 +1,6 @@
 ﻿using ColossalFramework.Globalization;
 using ColossalFramework.UI;
 using Klyte.SuburbStyler.Interfaces;
-using Klyte.SuburbStyler.MainWindow.Tabs;
 using Klyte.SuburbStyler.TextureAtlas;
 using Klyte.SuburbStyler.UI;
 using Klyte.SuburbStyler.Utils;
