@@ -2,6 +2,7 @@
 
 namespace Klyte.SuburbStyler.Model
 {
+    #region District Decoration
     public class DistrictDecoration
     {
         public string Name { get; set; }
@@ -22,13 +23,32 @@ namespace Klyte.SuburbStyler.Model
         public float GroundDensity { get; set; }
     }
 
-    public class TreeElement : DistrictDecorationElement, ITreeElement
+    public class TreeElement : DistrictDecorationElement
     {
         public string TreePrefabName { get; set; }
     }
 
-    public abstract class DividerElement : DistrictDecorationElement
+    public class DividerElement : DistrictDecorationElement
     {
+        public string DividerDefinitionName { get; set; }
+    }
+
+    public class GroundElement : DistrictDecorationElement
+    {
+        public string GroundDecoratorName { get; set; }
+    }
+
+    public class DistrictDecorationElement
+    {
+        public int Weight { get; set; }
+    }
+    #endregion
+
+    #region Divider Definitions
+    public abstract class DividerDefinition
+    {
+        public string Name { get; set; }
+
         /// <summary>
         /// width of the prop (or repeat distance)
         /// </summary>
@@ -41,35 +61,14 @@ namespace Klyte.SuburbStyler.Model
         public float Depth { get; set; }
     }
 
-    public class TreeDividerElement : DividerElement, ITreeElement
+    public class TreeDividerDefinition : DividerDefinition
     {
         public string TreePrefabName { get; set; }
     }
 
-    public class PropDividerElement : DividerElement, IPropElement
+    public class PropDividerDefinition : DividerDefinition
     {
-        // TODO add support for special edge elements, gates etc.
-
         public string PropPrefabName { get; set; }
     }
-
-    public class GroundElement : DistrictDecorationElement
-    {
-        public string GroundGeneratorName { get; set; }
-    }
-
-    public class DistrictDecorationElement
-    {
-        public int Weight { get; set; }
-    }
-
-    public interface ITreeElement
-    {
-        string TreePrefabName { get; set; }
-    }
-
-    public interface IPropElement
-    {
-        string PropPrefabName { get; set; }
-    }
+    #endregion
 }
