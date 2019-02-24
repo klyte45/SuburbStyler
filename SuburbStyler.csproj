@@ -50,6 +50,12 @@
     <Compile Include="Interfaces\BasicIUserMod.cs" />
     <Compile Include="MainWindow\SSDecorationTab.cs" />
     <Compile Include="MainWindow\Tabs\SSDecorationTabTrees.cs" />
+    <Compile Include="Model\DistrictDecorationDefinition.cs" />
+    <Compile Include="Model\DividerDefinition.cs" />
+    <Compile Include="Model\SuburbStylerDefinition.cs" />
+    <Compile Include="Patches\BuildingAIRenderPropsPatch.cs" />
+    <Compile Include="BuildingDecorationManager.cs" />
+    <Compile Include="Patches\PatchLoadingExtension.cs" />
     <Compile Include="SuburbStyler.cs" />
     <Compile Include="SSController.cs" />
     <Compile Include="TextureAtlas\SSCommonTextureAtlas.cs" />
